@@ -8,7 +8,8 @@ export default function Sucess({ section, form, selectedseats }){
         description:[section.movie.title,
                      `${section.day.date} ${section.name}`]},
         {title:"Ingressos",
-        description: [selectedseats.map(s=>`Assento ${selectedseats.name}`) ]},
+        description: [selectedseats.map(s=><p>Assento {s.name}
+        </p>) ]},
         {title:"Comprador",
         description:[`Nome:${form.name}`,
                     `CPF: ${form.cpf}`]},

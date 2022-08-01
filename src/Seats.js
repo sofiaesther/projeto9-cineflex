@@ -33,15 +33,19 @@ export default function Seats( {section, setSection, form, setForm,viewfooter, s
     console.log(selectedseats)
     function sendRequest(section,form, selected){
         setViewfooter(!viewfooter);
-        const send ={
-            ids: selected.map(s=>s.id),
-            name: form.name,
-            cpf: form.cpf
+        if (selected.length>=1){
+            const send ={
+                ids: selected.map(s=>s.id),
+                name: form.name,
+                cpf: form.cpf
+            }
+            const promisse = axios.post("https://mock-api.driven.com.br/api/v7/cineflex/seats/book-many",send);
+            promisse.then(p=>{
+                console.log('aprovado')
+            })
+        } else{
+            alert('Selecione pelo menos um assento')
         }
-        const promisse = axios.post("https://mock-api.driven.com.br/api/v7/cineflex/seats/book-many",send);
-        promisse.then(p=>{
-            console.log('aprovado')
-        })
     }
 
     useEffect(()=>{
